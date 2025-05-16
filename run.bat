@@ -1,3 +1,4 @@
+cls
 @echo off
 REM Script to start the FinderFI server
 
