@@ -1,29 +1,81 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>File Browser</title>
-    <link rel="stylesheet" href="/public/style.css" />
-  </head>
-  <body>
-    {{HEADER}}
-    <div class="search-container">
-      <input
-        type="text"
-        id="search"
-        placeholder="Search current folder..."
-        autocomplete="off"
-      />
-    </div>
-    <div class="file-list">{{FILES}}</div>
+<html lang="en">
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>🗂️ FinderFI</title>
+      <link rel="icon" href="/public/favicon.webp" />
+      <link rel="stylesheet" href="/public/style.css" />
+    </head>
+    <body>
+      <div id="main-container">
+      {{HEADER}}
+      <div class="search-container">
+        <input
+          type="text"
+          id="search"
+          placeholder="Search current folder..."
+          autocomplete="off"
+        />
+      </div>
+      <div class="file-list">{{FILES}}</div>
 
+      <script>
+        document
+          .getElementById("search")
+          .addEventListener("input", function (e) {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll(".file-item").forEach((item) => {
+              const fileName = item.dataset.name;
+              item.style.display = fileName.includes(searchTerm)
+                ? "block"
+                : "none";
+            });
+          });
+      </script>
+      </div>
     <script>
-      document.getElementById("search").addEventListener("input", function (e) {
-        const searchTerm = e.target.value.toLowerCase();
-        document.querySelectorAll(".file-item").forEach((item) => {
-          const fileName = item.dataset.name;
-          item.style.display = fileName.includes(searchTerm) ? "block" : "none";
-        });
-      });
-    </script>
-  </body>
+document.addEventListener('DOMContentLoaded', () => {
+  const fileItems = document.querySelectorAll('.file-item');
+
+  fileItems.forEach(item => {
+    const thumbnailRequestPath = item.dataset.thumbnailRequestPath;
+    const isImage = item.dataset.isImage === 'true';
+    const isVideo = item.dataset.isVideo === 'true';
+
+    if (thumbnailRequestPath && (isImage || isVideo)) {
+      const thumbnailDiv = item.querySelector('.thumbnail');
+      if (thumbnailDiv) {
+        // Initially, you might want to show a placeholder or a loading indicator.
+        // For simplicity, we'll just set a default background or leave it as is.
+        // You can add a class like 'loading' to style it via CSS.
+        // e.g., thumbnailDiv.classList.add('loading');
+
+        fetch(`/thumbnail?path=${thumbnailRequestPath}`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text(); // The server sends the base64 data URL as plain text
+          })
+          .then(thumbnailDataUrl => {
+            thumbnailDiv.style.backgroundImage = `url('${thumbnailDataUrl}')`;
+            // thumbnailDiv.classList.remove('loading'); // Remove loading indicator
+            // thumbnailDiv.classList.add('loaded');    // Add loaded class if needed
+          })
+          .catch(error => {
+            console.error('Error fetching thumbnail:', thumbnailRequestPath, error);
+            // Optionally, set a default/error thumbnail
+            // thumbnailDiv.style.backgroundImage = 'url("/public/error-thumbnail.svg")';
+            // thumbnailDiv.classList.remove('loading');
+            // thumbnailDiv.classList.add('error');
+          });
+      }
+    }
+  });
+});
+</script>
+</body>
+  </html>
 </html>

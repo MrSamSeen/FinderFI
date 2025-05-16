@@ -1,24 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
-    padding: 20px;
-    background-color: #f5f5f7;
+    padding: 8px;
+    background-color: #252527;
+}
+
+#main-container {
+    position: relative;
+    border-radius: 18px;
+    margin: 0 auto;
+    padding: 8px 16px;
+    width: clamp(300px, 80%, 900px);
+    background-color: #353537;
 }
 
 .header {
     margin-bottom: 20px;
     display: flex;
-    gap: 10px;
+    gap: 18px;
 }
 
 .button {
     display: inline-block;
+    flex-grow: 1;
     padding: 8px 16px;
     background-color: #007aff;
     color: white;
     text-decoration: none;
     border-radius: 8px;
     font-size: 14px;
+    text-align: center;
 }
 
 .search-container {
@@ -28,35 +43,39 @@ body {
 #search {
     width: 100%;
     padding: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid #353537;
+    outline: none;
+    background-color: #666;
+    color: #d1d1d1;
+
     border-radius: 8px;
     font-size: 16px;
 }
 
 .file-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
 }
 
 .file-item {
-    background: white;
+    background: #222;
     border-radius: 12px;
-    padding: 15px;
+    padding: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .file-item a {
     display: flex;
     align-items: flex-start;
-    color: #1d1d1f;
+    color: #d1d1d1;
     text-decoration: none;
-    gap: 15px;
+    gap: 12px;
 }
 
 .icon {
-    width: 40px;
-    height: 40px;
+    width: 64px;
+    height: 64px;
     flex-shrink: 0;
     margin-top: 3px;
 }
@@ -74,8 +93,8 @@ body {
 }
 
 .thumbnail-container {
-    width: 60px;
-    height: 60px;
+    width: clamp(200px, 100%, 100%);
+    height: 200px;
     flex-shrink: 0;
     position: relative;
     border-radius: 4px;
@@ -107,17 +126,27 @@ body {
 .file-name {
     font-weight: 500;
     margin-bottom: 4px;
-    word-break: break-all;
+    max-height: 2.2em;
+    line-height: 1.1em;
+    font-size: 1em;
+    max-lines: 2;
+    overflow: hidden;
 }
 
 .file-meta {
     display: flex;
     gap: 12px;
-    font-size: 0.9em;
+    font-size: 0.8em;
     color: #666;
 }
 
 .file-meta span {
     display: flex;
     align-items: center;
+}
+
+.file-with-thumb {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
