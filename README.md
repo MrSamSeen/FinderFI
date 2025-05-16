@@ -43,6 +43,8 @@ For now, I'm satisfied with its current functionality for my needs.
     ```
 
 3.  **Install dependencies:**
+    This project uses Node.js and npm for package management. The `package.json` file lists all necessary dependencies (similar to a `requirements.txt` file in Python projects or a `pom.xml` in Maven projects).
+    To install them, run:
     ```bash
     npm install
     ```
