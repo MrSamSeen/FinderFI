@@ -1,3 +1,5 @@
+[![SamSeen Logo](https://img.shields.io/badge/Slideshow_Creator-by_SamSeen_Solutions-orange?style=for-the-badge)](https://github.com/MrSamSeen)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 # FinderFI - Local Network File Access Server
 
 FinderFI is a simple Node.js Express server designed to allow access to files on a host machine (like a laptop or PC) from any other device connected to the same Wi-Fi network.
@@ -35,7 +37,7 @@ For now, I'm satisfied with its current functionality for my needs.
 
 2.  **Clone the repository (if you haven't already):**
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/MrSamSeen/FinderFI.git
     cd FinderFI
     ```
 
