@@ -48,11 +48,29 @@ For now, I'm satisfied with its current functionality for my needs.
     ```
 
 4.  **Start the server:**
+    You can start the server using the appropriate script for your operating system:
+
+    *   **For macOS/Linux (using Bash):**
+        Make the script executable (only needs to be done once):
+        ```bash
+        chmod +x run.sh
+        ```
+        Then run:
+        ```bash
+        ./run.sh
+        ```
+
+    *   **For Windows (using Command Prompt or PowerShell):**
+        ```bash
+        run.bat
+        ```
+
+    Alternatively, you can still run it directly with Node.js:
     ```bash
     node server.js
     ```
-    The server will typically start on port 3000. You'll see a message in your console like:
-    `Server running at http://<your-local-ip>:3000/`
+    The server will typically start on port 3000. You'll see a vibrant welcome message in your console, including a QR code for easy access from mobile devices, and the server address like:
+    `Server running at: http://<your-local-ip>:3000/`
 
 5.  **Access from another device:**
     Open a web browser on any device connected to the same Wi-Fi network and navigate to the URL shown in the console (e.g., `http://192.168.1.100:3000/`).

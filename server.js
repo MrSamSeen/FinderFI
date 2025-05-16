@@ -399,5 +399,28 @@ function formatDate(date) {
 }
 
 app.listen(port, "0.0.0.0", () => {
-  console.log(`Server running at http://${getIP()}:${port}/`);
+  const ip = getIP();
+  const address = `http://${ip}:${port}/`;
+
+  // ASCII Art and Welcome Message
+  console.log("\x1b[36m%s\x1b[0m", `
+███████╗██╗███╗   ██╗██████╗ ███████╗██████╗ ███████╗██╗
+██╔════╝██║████╗  ██║██╔══██╗██╔════╝██╔══██╗██╔════╝██║
+█████╗  ██║██╔██╗ ██║██║  ██║█████╗  ██████╔╝█████╗  ██║
+██╔══╝  ██║██║╚██╗██║██║  ██║██╔══╝  ██╔══██╗██╔══╝  ██║
+██║     ██║██║ ╚████║██████╔╝███████╗██║  ██║██║     ██║
+╚═╝     ╚═╝╚═╝  ╚═══╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝                                                                        
+  `);
+  console.log("\x1b[33m%s\x1b[0m", "             FinderFI by SamSeen Solutions");
+  console.log("\n\x1b[1m\x1b[32m%s\x1b[0m", `  Server running at: ${address}`);
+  console.log("\x1b[2m%s\x1b[0m", "  Scan the QR code below with your phone to access.");
+
+  // QR Code
+  const qrcode = require('qrcode-terminal');
+  qrcode.generate(address, { small: true }, function (qr) {
+    console.log(qr);
+    console.log("\n\x1b[35m%s\x1b[0m", "=====================================================");
+    console.log("\x1b[35m%s\x1b[0m", " Ensure your device is on the same Wi-Fi network!  ");
+    console.log("\x1b[35m%s\x1b[0m", "=====================================================\n");
+  });
 });
